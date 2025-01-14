@@ -1,17 +1,36 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import { createBoard } from '../utils/createBoard';
 import { gameReducer } from '../reducers/gameReducer';
 import Cell from './Cell';
 
 const NUMBER_OF_ROWS = 10;
-const NUMBER_OF_COLUMNS = 15;
+// const NUMBER_OF_COLUMNS = 12;
 
 export default function Board() {
+    // const [gameState, dispatch] = useReducer(gameReducer, {
+    //     board: createBoard(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS),
+    //     isWin: false,
+    //     counterMoves: 0
+    // });
+
+    const [numberOfColumns, setNumberOfColumns] = useState(getNumberOfColumns());
+
+    // Calculate number of columns on initialization
+    useEffect(() => {
+        function handleResize() {
+            setNumberOfColumns(getNumberOfColumns());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const [gameState, dispatch] = useReducer(gameReducer, {
-        board: createBoard(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS),
+        board: createBoard(NUMBER_OF_ROWS, numberOfColumns),
         isWin: false,
         counterMoves: 0
     });
+
 
     function handlePress(row, col) {
         dispatch({ type: "HANDLE_CELL", row, col });
@@ -63,26 +82,32 @@ function whatTheMessageShows(isWin) {
     return isWin ? '💎 You Win 💎' : 'Find the 💎';
 }
 
+// Function to calculate number of columns
+function getNumberOfColumns() {
+    const isMobile = window.innerWidth <= 768; // Threshold for mobile
+    return isMobile ? 6 : 12;
+}
+
 const styles = {
     containerBoard: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: '100vh', // Καταλαμβάνει όλο το ύψος της σελίδας
+        height: '100vh',
     },
 
     containerOuterUpper: {
-        width: '100%', // Για να είναι το ίδιο το πλάτος με τα άλλα πλαίσια
-        maxWidth: '1500px', // Περιορίζουμε το πλάτος, να είναι σταθερό
+        width: '100%',
+        maxWidth: '1500px',
         padding: '10px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '10px', // Προσθέτουμε λίγο χώρο από κάτω
+        marginBottom: '10px',
     },
     containerUpper: {
-        backgroundColor: 'orange',
+        backgroundColor: '#D7E9F7', // Soft blue
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -90,28 +115,29 @@ const styles = {
         borderRadius: '10px',
         border: '4px solid black',
         padding: '10px',
-        width: '100%', // Πλάτος ίδιο με το πάνω container
+        width: '100%',
         maxWidth: '1500px',
-        height: 'auto', // Το ύψος να προσαρμόζεται στο περιεχόμενο
+        height: 'auto',
     },
     text: {
         fontWeight: '900',
         fontSize: '36px',
-        color: 'black',
+        color: '#333333', // Dark charcoal
         textAlign: 'center',
     },
 
     containerOuterArray: {
-        flex: 1, // Αυτό το container θα πάρει το διαθέσιμο ύψος
-        width: '100%', // Ιδιότυπο πλάτος
-        maxWidth: '1500px', // Περιορίζουμε το πλάτος
+        flex: 1,
+        width: '100%',
+        maxWidth: '1500px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '10px',
+        marginBottom: '10px',
     },
     containerArray: {
-        backgroundColor: 'orange',
+        backgroundColor: '#D7E9F7', // Soft blue
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -120,6 +146,7 @@ const styles = {
         border: '4px solid black',
         width: '100%',
         maxWidth: '1500px',
+        overflow: 'hidden', // Prevent overflow
     },
     rowStyle: {
         display: 'flex',
@@ -129,31 +156,19 @@ const styles = {
     },
 
     containerOuterDown: {
-        width: '100%', // Ιδιότυπο πλάτος
-        maxWidth: '1500px', // Περιορίζουμε το πλάτος
+        width: '100%',
+        maxWidth: '1500px',
         padding: '10px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    // containerDown: {
-    //     display: 'flex',
-    //     flexDirection: 'row',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     backgroundColor: 'orange',
-    //     borderRadius: '10px',
-    //     border: '4px solid black',
-    //     padding: '10px',
-    //     width: '100%',
-    //     maxWidth: '1500px',
-    // },
     containerDown: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around', // Δίνει κενό ανάμεσα στα στοιχεία
+        justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: 'orange',
+        backgroundColor: '#D7E9F7', // Soft blue
         borderRadius: '10px',
         border: '4px solid black',
         padding: '10px',
@@ -163,18 +178,9 @@ const styles = {
     text2: {
         fontWeight: '700',
         fontSize: '26px',
-        color: 'blue',
+        color: '#333333', // Dark charcoal
         textAlign: 'center',
     },
-    // button: {
-    //     flex: 1,
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     backgroundColor: 'transparent',
-    //     border: 'none',
-    //     cursor: 'pointer',
-    // },
     button: {
         flex: 1,
         display: 'flex',
@@ -183,27 +189,16 @@ const styles = {
         backgroundColor: 'transparent',
         border: 'none',
         cursor: 'pointer',
-        padding: '5px 15px', // Κανονικό padding
+        padding: '5px 15px',
         height: 'auto',
         width: 'auto',
         textAlign: 'center',
     },
-    // verticalLine: {
-    //     height: '90%',
-    //     borderLeft: '2px solid black',
-    //     margin: '0 10px',
-    // },
     verticalLine: {
-        height: '80px', // Σταθερό ύψος για τη γραμμή
+        height: '80px',
         borderLeft: '2px solid black',
-        margin: '0 20px', // Προσαρμογή κενών γύρω της
+        margin: '0 20px',
     },
-    // movesCounter: {
-    //     flex: 1,
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    // },
     movesCounter: {
         flex: 1,
         display: 'flex',

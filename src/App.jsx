@@ -15,11 +15,11 @@ function App() {
 export default App
 
 
-// Inline CSS για styling
+// Inline CSS for styling
 const styles = {
   containerSafe: {
     flex: 1,
-    height: '100vh',  // Χρησιμοποιούμε height 100vh για να καλύψουμε όλο το ύψος της οθόνης
+    height: '100vh',  // Ηeight 100vh to cover the full height of the screen
   },
   container: {
     display: 'flex',

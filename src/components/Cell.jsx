@@ -29,14 +29,13 @@ function whatTheCellShows(isFlipped, squareText) {
 
 const styles = {
     outerCellStyle: {
-        backgroundColor: 'orange',
         display: 'flex',
         flex: 0.2,
         justifyContent: 'center',
-        padding: '5px', // για να παρέχουμε χώρο γύρω από το εσωτερικό div
+        padding: '5px',
     },
     innerCellStyle: {
-        backgroundColor: 'blue',
+        backgroundColor: '#A8DADC', // Soft green-blue
         height: '50px',
         width: '50px',
         display: 'flex',
@@ -45,12 +44,12 @@ const styles = {
         borderRadius: '10px',
         border: '2px solid black',
         boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-        cursor: 'pointer', // ώστε να φαίνεται ότι είναι πατητό
+        cursor: 'pointer', // Makes it visually clickable
     },
     cellTextStyle: {
         alignSelf: 'center',
         fontSize: '25px',
         fontWeight: 'bold',
-        color: 'white',
+        color: '#333333', // Dark anthracite
     },
 };

@@ -1,4 +1,4 @@
-import { createBoard } from "../utils/createBoard";  // Το path εξαρτάται από τη δομή του project σου
+import { createBoard } from "../utils/createBoard";
 
 export function gameReducer(state, action) {
     const { type, row, col } = action;
@@ -8,7 +8,7 @@ export function gameReducer(state, action) {
             if (state.board[row][col].isFlipped || state.isWin) return { ...state };
             
             const newBoard = flipCell(row, col, state.board);
-            const newIsWin = winCheck(newBoard); // Ελέγχουμε άμεσα αν κερδίσαμε με το νέο board
+            const newIsWin = winCheck(newBoard); // Immediately check if the game is won with the new board
     
             return {
                 ...state,
@@ -27,17 +27,17 @@ export function gameReducer(state, action) {
         }
         default: {
             console.log('error, unknown action!');
-            return state;  // Πρέπει να επιστρέφεται το state στο default για να μην υπάρχει undefined state
+            return state;  // The state must be returned in the default case to avoid undefined state
         }
     }
 }
 
-// Χρησιμοποιεί τη `createBoard` για την επανεκκίνηση του παιχνιδιού
+// Uses `createBoard` to restart the game
 function restartGame(board) {
     return createBoard(board.length, board[0].length);
 }
 
-// Έλεγχος για να δούμε αν το παιχνίδι έχει κερδηθεί
+// Checks if the game has been won
 function winCheck(board) {
     for (let row = 0; row < board.length; row++) {
         for (let col = 0; col < board[0].length; col++) {
@@ -48,9 +48,9 @@ function winCheck(board) {
     return false;
 }
 
-// Ενημερώνει το board με το κελί που έχει flipped
+// Updates the board with the flipped cell
 function flipCell(row, col, board) {
-    const newBoard = board.map(row => row.slice()); // Creates a deep copy
+    const newBoard = board.map(row => row.slice()); // Creates copy
     const cell = newBoard[row][col];
     newBoard[row][col] = {
         ...cell,
