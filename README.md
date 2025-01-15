@@ -10,7 +10,7 @@ Square Treasure is a React-based game inspired by Minesweeper, where the objecti
 
 Hit this and play: https://sidavd.github.io/SquareTreasureB/
 
-![react_native](<assets/SquareTreasureGame_0.png>)
+![Square Treasure Game](<assets/SquareTreasureGame_0.png>)
 
 ## Features
 
@@ -20,7 +20,7 @@ Hit this and play: https://sidavd.github.io/SquareTreasureB/
 - **Game Restart**: Allows the player to restart the game at any time.
 - **Dynamic Grid**: The grid is generated dynamically, with each cell showing the distance to the treasure or a unique treasure indicator when flipped.
 
-![react_native](<assets/SquareTreasureGame_1.png>)
+![Square Treasure Game](<assets/SquareTreasureGame_1.png>)
 
 ## Technologies Used
 
@@ -39,7 +39,7 @@ Hit this and play: https://sidavd.github.io/SquareTreasureB/
 3. The number of moves is tracked, and you can restart the game using the **Restart** button at the bottom.
 4. The game is over once you find the treasure.
 
-![react_native](<assets/SquareTreasureGame_2.png>)
+![Square Treasure Game](<assets/SquareTreasureGame_2.png>)
 
 
 
