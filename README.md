@@ -2,7 +2,7 @@
 
 ## Description
 
-Square Treasure is a React-based game inspired by Minesweeper, where the objective is to find the hidden treasure (💎) on a grid. The grid cells display the distance to the treasure, and players need to flip the cells strategically to uncover the treasure. The game is won when the player finds the hidden treasure.
+Square Treasure is a React-based game inspired by Minesweeper, where the objective is to find the hidden treasure (💎) on a grid. The grid cells display the distance to the treasure, and players need to flip the cells strategically to uncover it. The game is won when the player finds the treasure.
 
 ## Features
 
@@ -18,10 +18,10 @@ Square Treasure is a React-based game inspired by Minesweeper, where the objecti
 - **React Hooks**: Using `useReducer`, `useState`, and `useEffect` for managing game state.
 - **CSS-in-JS**: Inline styles for styling the application.
 
-## How to Play
+## Game Instructions
 
 1. The game is played on a grid of squares. Each square has a number or a symbol:
-   - **Numbers**: Represent the Manhattan distance to the treasure.
+   - **Numbers**: Represent the distance to the treasure.
    - **💎**: Represents the hidden treasure.
    - **?**: Indicates squares that are far from the treasure (based on a certain threshold).
    
@@ -29,13 +29,11 @@ Square Treasure is a React-based game inspired by Minesweeper, where the objecti
 3. The number of moves is tracked, and you can restart the game using the **Restart** button at the bottom.
 4. The game is over once you find the treasure.
 
-## Getting Started
+## How to Play
 
-Follow these steps to set up and run the game locally.
+Hit this and play: https://sidavd.github.io/SquareTreasureB/
 
-### Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/) installed on your system. You can check by running:
 
 ```bash
 node -v
